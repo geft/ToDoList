@@ -13,8 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var newTaskButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var toDoItems = [String]()
-    var itemsDone = [Int]()
+    var toDoItems = [Task]()
     
     // MARK: New task
     
@@ -59,7 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func appendItem(text: String) {
-        toDoItems.append(text)
+        toDoItems.append(Task(name: text))
         tableView.reloadData()
     }
     
@@ -67,7 +66,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if (toDoItems.count > 1) {
             toDoItems.remove(at: index)
         } else {
-            toDoItems = [String]()
+            toDoItems = [Task]()
         }
         
         tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
@@ -92,28 +91,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let index = indexPath.row
         let cell: ToDoitem = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ToDoitem
+        
         cell.delegate = self
+        cell.label.text = toDoItems[index].name
+        cell.deleteButton.tag = index
         
-        cell.label.text = toDoItems[indexPath.row]
-        cell.deleteButton.tag = indexPath.row
-        
-        if (itemsDone.contains(indexPath.row)) {
-            cell.strikeThroughItem(index: indexPath, text: toDoItems[indexPath.row])
+        if (toDoItems[index].isDone) {
+            cell.strikeThroughItem(index: indexPath, text: toDoItems[index].name)
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let firstIndex = itemsDone.index(of: indexPath.row)
-        if (firstIndex == nil) {
-            itemsDone.append(indexPath.row)
+        let index = indexPath.row
+        
+        if (toDoItems[index].isDone) {
+            toDoItems[index].isDone = false
         } else {
-            itemsDone.remove(at: firstIndex! as Int)
+            toDoItems[index].isDone = true
         }
         
         tableView.reloadData()
     }
+    
+    
 }
 
