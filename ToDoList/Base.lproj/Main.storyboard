@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dC0-0Z-ggE">
+                                <state key="normal" title="New Task"/>
+                                <connections>
+                                    <action selector="newTaskAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QlE-XW-4L2"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5bh-yU-MDO">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="fQB-hZ-ByJ" customClass="ToDoitem" customModule="ToDoList" customModuleProvider="target">
+                                        <frame key="frameInset" minY="28" width="359" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fQB-hZ-ByJ" id="bk3-Ld-d7m">
+                                            <frame key="frameInset" width="359" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRJ-SS-eI9">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjy-Ps-Q2r">
+                                                    <state key="normal" title="Delete"/>
+                                                    <connections>
+                                                        <action selector="deleteAction:" destination="fQB-hZ-ByJ" eventType="touchUpInside" id="El2-b2-33S"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Fjy-Ps-Q2r" secondAttribute="bottom" constant="2" id="4eA-SM-e9G"/>
+                                                <constraint firstItem="Fjy-Ps-Q2r" firstAttribute="centerY" secondItem="mRJ-SS-eI9" secondAttribute="centerY" id="BQJ-wa-ebT"/>
+                                                <constraint firstItem="mRJ-SS-eI9" firstAttribute="leading" secondItem="bk3-Ld-d7m" secondAttribute="leadingMargin" constant="8" id="LpK-B6-n4L"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mRJ-SS-eI9" secondAttribute="bottom" constant="2" id="iXH-iG-pMK"/>
+                                                <constraint firstItem="Fjy-Ps-Q2r" firstAttribute="trailing" secondItem="bk3-Ld-d7m" secondAttribute="trailingMargin" id="qgU-WY-pM8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="deleteButton" destination="Fjy-Ps-Q2r" id="0bG-Ra-VAc"/>
+                                            <outlet property="label" destination="mRJ-SS-eI9" id="jcg-sz-ccU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5bh-yU-MDO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="2NH-RF-Hpb"/>
+                            <constraint firstAttribute="trailing" secondItem="5bh-yU-MDO" secondAttribute="trailing" constant="8" id="6mq-Hf-QhX"/>
+                            <constraint firstItem="5bh-yU-MDO" firstAttribute="top" secondItem="dC0-0Z-ggE" secondAttribute="bottom" constant="8" id="GvG-YS-dC5"/>
+                            <constraint firstItem="dC0-0Z-ggE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="SDw-aT-o2d"/>
+                            <constraint firstItem="dC0-0Z-ggE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="VFv-Z9-aA2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5bh-yU-MDO" secondAttribute="bottom" constant="8" id="abL-ad-bbi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="newTaskButton" destination="dC0-0Z-ggE" id="fBH-Sb-Ol3"/>
+                        <outlet property="tableView" destination="5bh-yU-MDO" id="ECU-bi-6dh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29.600000000000001" y="58.920539730134934"/>
+        </scene>
+    </scenes>
+</document>
