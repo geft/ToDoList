@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     var toDoItems = [String]()
+    var itemsDone = [Int]()
     
     // MARK: New task
     
@@ -80,10 +81,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.reloadData()
     }
     
-    func strikeThroughItem(index: IndexPath) {
-        //let cell = tableView.cellForRow(at: index)
-    }
-    
     // MARK: Table view
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,12 +97,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.label.text = toDoItems[indexPath.row]
         cell.deleteButton.tag = indexPath.row
-
+        
+        if (itemsDone.contains(indexPath.row)) {
+            cell.strikeThroughItem(index: indexPath, text: toDoItems[indexPath.row])
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        strikeThroughItem(index: indexPath)
+        let firstIndex = itemsDone.index(of: indexPath.row)
+        if (firstIndex == nil) {
+            itemsDone.append(indexPath.row)
+        } else {
+            itemsDone.remove(at: firstIndex! as Int)
+        }
+        
+        tableView.reloadData()
     }
 }
 

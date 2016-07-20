@@ -31,4 +31,17 @@ class ToDoitem: UITableViewCell {
         
         delegate?.onDeleteCompleted(isDeleted: isDeleted, index: sender.tag)
     }
+    
+    func strikeThroughItem(index: IndexPath, text: String) {
+        label.attributedText = getStyledText(text: text)
+    }
+    
+    func getStyledText(text: String) -> NSMutableAttributedString {
+        let attributeString = NSMutableAttributedString(string: text)
+        attributeString.addAttribute(
+            NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+        
+        return attributeString
+    }
+
 }
